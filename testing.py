@@ -17,7 +17,7 @@ def truerandom(size, sort):
         heapsort(array)
     # stop timer and save time to results file
     stop = time.time()
-    of = open("truerandom.result", "a")
+    of = open("truerandom.txt", "a")
     of.write(sort, stop - start)
 
 def reversesort(size, sort):
@@ -31,5 +31,3 @@ def duplicates(size, sort):
 
 def sorted(size, sort):
     pass
-
-truerandom(40, "mergesort")
