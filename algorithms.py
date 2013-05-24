@@ -33,8 +33,8 @@ def quicksort(array):
     length = len(array)
     if length <= 1:
         return array
-    p,i = pivot(array[0], array[int(length/2)], int(length/2), array[-1])
-    array.remove(p)
+    p,i = pivot(array[0], array[length//2], length//2, array[-1])
+    del array[i]
     less = []
     greater = []
     for x in array:
@@ -42,9 +42,10 @@ def quicksort(array):
             less.append(x)
         else:
             greater.append(x)
-    temp = []
-    temp = quicksort(less).append(p)
-    return temp.extend(quicksort(greater))
+    less = quicksort(less)
+    less.append(p)
+    less.extend(quicksort(greater))
+    return less
 
 # median-of-three pivot
 def pivot(one, two, two_i, three):

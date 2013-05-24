@@ -9,14 +9,16 @@ def truerandom(size, sort):
     of.close()
     # start timer and run over $sort algorithm
     start = time.time()
+    target = sorted(array)
     if sort == "mergesort":
-        mergesort(array)
+        array = mergesort(array)
     elif sort == "quicksort":
-        quicksort(array)
+        array = quicksort(array)
     else:
-        heapsort(array)
+        array = heapsort(array)
     # stop timer and save time to results file
     stop = time.time()
+    assert array == target
     of = open("truerandom.txt", "a")
     of.write(sort +" "+ str(size) +" "+ str(stop - start)+'\n')
     of.close()
@@ -30,5 +32,5 @@ def nearsorted(size, sort):
 def duplicates(size, sort):
     pass
 
-def sorted(size, sort):
+def sort(size, sort):
     pass
