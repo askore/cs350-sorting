@@ -1,3 +1,3 @@
 from testing import *
 
-truerandom(100000, "mergesort")
+truerandom(1000000, "mergesort")
