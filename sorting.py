@@ -1,4 +1,3 @@
-import algorithms
-import testing
+from testing import *
 
-truerandom(40, "mergesort")
+truerandom(100000, "mergesort")
