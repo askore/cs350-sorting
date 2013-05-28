@@ -49,11 +49,22 @@ def quicksort(array):
 
 # median-of-three pivot
 def pivot(one, two, two_i, three):
-    if one < two < three:
-        return two, two_i
-    elif two < one < three:
-        return one, 0
-    return three, -1
+    if one < two:
+        if two < three:
+            return two, two_i
+        else:
+            if three < one:
+                return one, 0
+            else:
+                return three, -1
+    else:
+        if one < three:
+            return one, 0
+        else:
+            if three < two:
+                return two, two_i
+            else:
+                return three, -1
 
 
 def heapsort():
