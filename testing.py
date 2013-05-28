@@ -1,36 +1,48 @@
 import time
 from algorithms import *
-def truerandom(size, sort):
+
+def read(size):
     array = []
     # open file and read $size lines
-    of = open("4.txt", "r")
+    of = open("100million.txt", "r")
     for i in range(0,size):
         array.append(of.readline())
     of.close()
+    return array
+
+def sort(array, t, size):
     # start timer and run over $sort algorithm
-    start = time.time()
     target = sorted(array)
-    if sort == "mergesort":
+    start = time.time()
+    if t == "mergesort":
         array = mergesort(array)
-    elif sort == "quicksort":
+    elif t == "quicksort":
         array = quicksort(array)
     else:
         array = heapsort(array)
     # stop timer and save time to results file
     stop = time.time()
     assert array == target
-    of = open("truerandom.txt", "a")
-    of.write(sort +" "+ str(size) +" "+ str(stop - start)+'\n')
+    return str(t +" "+ str(size) +" "+ str(stop - start)+'\n')
+
+def save(result, t):
+    of = open(t+".txt", "a")
+    of.write(result)
     of.close()
 
-def reversesort(size, sort):
-    pass
+def truerandom(size, t):
+    array = read(size)
+    save(sort(array, t, size), "truerandom")
 
-def nearsorted(size, sort):
-    pass
+def reversesort(size, t):
+    array = reversed(sorted(read(size)))
+    save(sort(array, t, size), "reversesort")
 
-def duplicates(size, sort):
-    pass
+def duplicates(size, t):
+    array = read(size)
+    # repeats of a few data points
+    save(sort(array, t, size), "duplicates")
 
-def sort(size, sort):
-    pass
+def inorder(size, t):
+    array = sorted(read(size))
+    save(sort(array, t, size), "inorder")
