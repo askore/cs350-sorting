@@ -20,7 +20,6 @@ def mergesort(array):
     if length <= 1:
         return array
     mid = length // 2
-    # this is black magic and stands in place of n assignments
     left = array[:mid]
     right = array[mid:]
     left = mergesort(left)
@@ -67,5 +66,35 @@ def pivot(one, two, two_i, three):
                 return three, -1
 
 
-def heapsort():
-    return
+
+
+def siftDown(array, start, end):
+    root = start
+    while root * 2 + 1 <= end:
+        child = root * 2 + 1
+        swap = root
+        if array[swap] < array[child]:
+            swap = child
+        if child + 1 <= end and array[swap] < array[child + 1]:
+            swap = child + 1
+        if swap != root:
+            array[swap], array[root] = array[root], array[swap]
+            root = swap
+        else:
+            return array
+    return array
+
+def heapsort(array):
+    length = len(array)
+
+    start = (length - 1) // 2
+    while start >= 0:
+        array = siftDown(array, start, length - 1)
+        start -= 1
+    end = length - 1
+
+    while end > 0:
+        array[end], array[0] = array[0], array[end]
+        end -= 1
+        siftDown(array, 0, end)
+    return array
