@@ -9,8 +9,10 @@ def merge(left, right):
         else:
             merged_list.append(right.pop())
     if left:
+        left.reverse()
         merged_list.extend(left)
     else:
+        right.reverse()
         merged_list.extend(right)
     return merged_list
 
