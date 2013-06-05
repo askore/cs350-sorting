@@ -69,19 +69,16 @@ def pivot(one, two, two_i, three):
 
 
 
-
 def siftDown(array, start, end):
-    root = start
-    while root * 2 + 1 <= end:
-        child = root * 2 + 1
-        swap = root
-        if array[swap] < array[child]:
-            swap = child
-        if child + 1 <= end and array[swap] < array[child + 1]:
-            swap = child + 1
-        if swap != root:
-            array[swap], array[root] = array[root], array[swap]
-            root = swap
+    while start * 2 <= end:
+        child = start * 2 + 1
+        swap = start * 2
+        if swap == end or array[swap] > array[child]:
+            child = swap
+
+        if array[start] < array[child]:
+            array[start], array[child] = array[child], array[start]
+            start = child
         else:
             return array
     return array
@@ -91,10 +88,10 @@ def heapsort(array):
 
     start = (length - 1) // 2
     while start >= 0:
-        array = siftDown(array, start, length - 1)
+        siftDown(array, start, length - 1)
         start -= 1
-    end = length - 1
 
+    end = length - 1
     while end > 0:
         array[end], array[0] = array[0], array[end]
         end -= 1
