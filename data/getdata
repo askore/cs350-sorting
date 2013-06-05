@@ -1,4 +1,0 @@
-#!/bin/bash
-for i in 1..1000; do
-	curl -s "http://www.random.org/integer-sets/?sets=1&num=10000&min=1&max=1000000000&commas=on&order=random&format=plain&rnd=new" | sed "s/, /\n/g" >> 10million.txt
-done
